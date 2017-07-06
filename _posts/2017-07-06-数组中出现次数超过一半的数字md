@@ -1,0 +1,62 @@
+---
+layout:     post
+title:      数组中出现次数超过一半的数字
+subtitle:   数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字
+date:       2017-07-06
+author:     DH
+header-img: img/post-bg-ios10.jpg
+catalog: true
+tags:
+    - 算法
+    - HashMap
+---
+
+# 题目
+
+    >数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。
+    由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。
+ 
+####分析
+
+    一个数组，我们很容易想到的是，直接对数据进行升序排列，而排序算法最好的平均时间复杂度是O(nlogn)。还有没有更快的算法呢？
+    假如我们去遍历数组，然后每次都记录某个值出现的次数，这个值出现一次就增加1。很自然的想到hashmap这种数据结构。其实这就是一种键值对，我们可以使用key来存储数组中元素的值，使用value来存储出现的次数，每遍历一个数之后，就更改对应的value值。
+
+####代码
+
+    综上分析，代码如下：
+
+```
+import java.util.*; 
+public class Solution {
+    public int MoreThanHalfNum_Solution(int [] array) {
+        HashMap <Integer,Integer> map = new HashMap<Integer,Integer>();
+        
+        for(int i = 0; i < array.length; i++){
+            if(!map.containsKey(array[i])){
+                map.put(array[i],1);
+            }else{
+                int count = map.get(array[i]) + 1;
+                map.put(array[i],count);
+            }
+        }
+        
+        Iterator iter = map.entrySet().iterator();
+        while(iter.hasNext()){
+            Map.Entry entry = (Map.Entry)iter.next();
+            Integer count = (Integer)entry.getValue();
+            Integer key = (Integer)entry.getKey();
+            if(count > (array.length / 2)){
+                return key;
+            }
+        }
+     return 0;
+   }
+}		
+
+
+```
+    其中，需要注意的是`Iterator iter = map.entrySet().iterator();`这是一个迭代器，它将hashmap类型的数据转换成集合类型，就可以用while进行遍历了。
+    
+
+
+

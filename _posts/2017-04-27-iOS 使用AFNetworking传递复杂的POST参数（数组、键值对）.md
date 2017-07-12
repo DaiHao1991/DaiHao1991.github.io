@@ -4,7 +4,7 @@ title:      iOS 使用AFNetworking传递复杂的POST参数（数组、键值对
 subtitle:   
 date:       2017-04-27
 author:     DH
-header-img: img/post-bg-coffee.jpg 
+header-img: img/post-bg-coffee.jpeg 
 catalog: true
 tags:
     - iOS

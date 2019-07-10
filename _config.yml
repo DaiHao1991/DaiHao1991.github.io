@@ -12,7 +12,7 @@ github_repo: "https://github.com/DaiHao1991/DaiHao1991.github.io" # you code rep
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "要么庸俗 要么孤独"
-sidebar-avatar: img/dh1.JPG      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: img/dh1.jpeg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 

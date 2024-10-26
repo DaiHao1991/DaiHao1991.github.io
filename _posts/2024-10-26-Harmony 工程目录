@@ -1,0 +1,50 @@
+---
+layout:     post
+title:      Harmony 工程目录
+subtitle:   
+date:       2024-10-26
+author:     DH
+header-img: img/post-bg-iWatch.jpg 
+catalog: true
+tags:
+    - 鸿蒙
+    - 鸿蒙基础
+    - Harmony
+---
+#### App 包结构
+
+鸿蒙的APP包结构整体上分为2大部分，分别是Hap和pack.info，其中HAP的数量是最少为1，pack.info数量为1。整体架构如下：
+-[](https://i-blog.csdnimg.cn/direct/7f7f72c2e8764f1ab002f9f4e7664786.png)
+其中：
+
+Hap：鸿蒙应用安装和运行的基本单元，由源码、资源文件、三方库和配置文件等组成，分为：
+
+Entry：是应用的入口
+feature：动态模块，应用的功能拓展
+pack.info：是在打包的时候，由IDE生成的。用于描述APP的信息，包含版本、公司、module等信息。
+
+下图我们可以看到一个app包中包含的内容：
+-[](https://i-blog.csdnimg.cn/direct/cb59cca7c47348b4a0837ddd29e55ccb.png)
+
+#### 工程目录结构
+
+-[](https://i-blog.csdnimg.cn/direct/af759ccf66d9424e8033b0e19d86626f.png)
+
+###  AppScope：App全局配置，App名字、ICon等
+-[](https://i-blog.csdnimg.cn/direct/71af1649341045a4a06684500c34e29b.png)
+###  Module：模块。可以包含多个模块，一定会有一个入口模块Entry。
+-[](https://i-blog.csdnimg.cn/direct/1cabe2a3957b455380b6ab1c6bc5d410.png)
+ets：源码
+entryability：应用入口；
+pages：应用包含的页面；
+resources：资源文件。图片、字符串、国际化相关资源。其中element用于存放字符串、颜色、央视等资源。media存放图片、视频、音频等多媒体文件；rawfile存放任意格式的资源文件。
+module.json5：模块的配置文件。包含模块的名字、类型、描述、入口Ability的名字、支持的设备、需要的权限等信息；
+build-profile.json5：当前模块的模块信息、编译信息配置项，buildOption、targets等；
+hvigorfile.ts：模块级别编译构建的脚本；
+oh-package.json5（模块内部）：描述三方包名、版本、入口文件和依赖项；
+
+
+###  oh_modules：存放第三方依赖库文件
+###  build-profile.json5：应用级别的配置信息，包含签名、模块配置等；
+###  hvigorfile.ts：应用级别的编译脚本；
+###  oh-package.json5：应用级别的全局配置，比如依赖覆盖、依赖关系重写和参数化配置

@@ -85,20 +85,15 @@ struct mainPage{
 TabBar的UI支持自定义：
 
 ```
-@Component
-@Preview
-@Entry
-struct mainPage{
-  @State tabsData:IconBean[] = getIconBeanData();
 
-  @Builder tabBuilder(title:string,imageUrlNormal:Resource){
+@Builder tabBuilder(title:string,imageUrlNormal:Resource){
     Column(){
       Image(imageUrlNormal).
       width(30)
         .aspectRatio(1)
       Text(title)
     }
-  }
+}
 ```
 
 整体效果：

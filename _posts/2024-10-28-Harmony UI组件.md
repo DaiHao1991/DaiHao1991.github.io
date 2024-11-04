@@ -13,7 +13,7 @@ tags:
 ---
 #### Tabs
 Tabs一般作为应用的骨架，能够让应用通过视图的切换，快速达到不同的功能。
-![](https://i-blog.csdnimg.cn/direct/1c81cbdb577f437783fac59591d6d995.png)
+![](https://camo.githubusercontent.com/26a14f8c7194cd2de530235fef0bb842f6216d26765e548ef8d42cb83ac6218b/68747470733a2f2f692d626c6f672e6373646e696d672e636e2f6469726563742f31633831636264623537376634333737383366616335393539316436643939352e706e67)
 
 包含两个部分：
 
@@ -28,7 +28,6 @@ Tabs一般作为应用的骨架，能够让应用通过视图的切换，快速�
 1. TabBar的bean:
 
 ```
-
 export class IconBean{
   iconNormalImage:Resource;
   iconPressedImage:Resource;
@@ -40,14 +39,11 @@ export class IconBean{
     this.iconName = iconName;
   }
 }
-
-
 ```
 
 2. TabBar数据集：
 
 ```
-
 export function getIconBeanData(): IconBean[] {
   return [
     new IconBean($r('app.media.ic_icon'), $r('app.media.ic_ok'), "消息"),
@@ -57,7 +53,32 @@ export function getIconBeanData(): IconBean[] {
     new IconBean($r('app.media.ic_icon'), $r('app.media.ic_ok'), "我的"),
   ];
 }
+```
 
+3. 初始化Tabs:
 
 ```
+@Component
+@Preview
+@Entry
+struct mainPage{
+  @State tabsData:IconBean[] = getIconBeanData();
+
+  build() {
+      Tabs({barPosition:BarPosition.End}){
+        ForEach(this.tabsData,(item:IconBean,index:number)=>{
+          TabContent(){
+              Text(item.iconName)
+          }.tabBar(item.iconName)
+        })
+      }
+
+        .width('100%')
+  }
+}
+```
+因为有了数据集，直接使用ForEach循环初始化。要设置Tabs的位置，可以通过barPosition设置。每一个TabBar的内容通过TabContent设置。
+
+最终效果：
+![](https://i-blog.csdnimg.cn/direct/57c07571a79742dba06c57d4eb25082d.png)
 

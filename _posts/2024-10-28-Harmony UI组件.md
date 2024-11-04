@@ -80,5 +80,7 @@ struct mainPage{
 因为有了数据集，直接使用ForEach循环初始化。要设置Tabs的位置，可以通过barPosition设置。每一个TabBar的内容通过TabContent设置。
 
 最终效果：
-![](https://i-blog.csdnimg.cn/direct/57c07571a79742dba06c57d4eb25082d.png)
+![](https://camo.githubusercontent.com/c44ab61da6f92c6418bd9fd20ef60b5ceed43662839025dd7239edbbb557e929/68747470733a2f2f692d626c6f672e6373646e696d672e636e2f6469726563742f35376330373537316137393734326462613036633537643465623235303832642e706e67)
+
+TabBar的UI支持自定义：
 

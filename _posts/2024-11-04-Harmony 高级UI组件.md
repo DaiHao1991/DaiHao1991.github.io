@@ -108,7 +108,70 @@ List是一个列表展示。比如通讯录、设置等等。并且支持分组�
 ![](https://camo.githubusercontent.com/f9613fe6d71a73ae50fa5ea59d639a6f3a1d52f054c94a783ea8be658897b1ad/68747470733a2f2f692d626c6f672e6373646e696d672e636e2f6469726563742f36336237316637393034633834383631393933356163373030366363663264352e706e67)
 
 
+基本用法：
 
+数据集依然使用tab的数据集，也是用Foreach进行初始化：
+
+
+```
+@Component
+@Entry
+@Preview
+struct ListDemoPage{
+  @State tabsData:IconBean[] = getIconBeanData();
+  build() {
+    List(){
+      ForEach(this.tabsData,(item:IconBean,index:number)=>{
+          ListItem(){
+            Text(item.iconName);
+          }
+      })
+    }
+  }
+}
+```
+
+![](https://i-blog.csdnimg.cn/direct/b04aa1f788564d27938ecf8ac8c1c8aa.png)
+
+同时，可以自定义每个Item的样式，通过divider函数为List设置分割线：
+
+```
+@Component
+@Entry
+@Preview
+struct ListDemoPage{
+  @State tabsData:IconBean[] = getListBeanData();
+  build() {
+    Column() {
+      Row() {
+        Text("鸿蒙高级UI组件")
+      }
+
+      List() {
+        ForEach(this.tabsData, (item: IconBean, index: number) => {
+          ListItem() {
+            Row() {
+              Image($r('app.media.ic_screenshot_thickness'))
+                .width(30)
+                .aspectRatio(1)
+              Text(item.iconName);
+            }
+          }.padding(10) // 设置每个Item的padding
+        })
+      }
+      .divider({
+        strokeWidth: 1,
+        startMargin: 30,
+        endMargin: 10,
+        color: Color.Grey
+      }) // 设置List的分割线
+    }
+  }
+}
+
+```
+
+![](https://i-blog.csdnimg.cn/direct/f17dc900d2524f35b6b2918e9fa2dd9a.png)
 
 
 

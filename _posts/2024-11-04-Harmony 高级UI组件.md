@@ -173,5 +173,48 @@ struct ListDemoPage{
 
 ![](https://camo.githubusercontent.com/10221ace7d652f162dc2b4714ec79840851d420501989a1731649210bab10b3a/68747470733a2f2f692d626c6f672e6373646e696d672e636e2f6469726563742f66313764633930306432353234663335623662323931386539666132646439612e706e67)
 
+List常用的用法是从网络请求到数据，然后渲染列表：
 
+```
+import axios, { Axios, AxiosResponse } from '@ohos/axios';
+import { SongBean } from '../model/MusicData';
 
+@Component
+@Entry
+struct AxiosDemoPage{
+  url:string = "数据源";
+
+   @State songList:SongBean[] = [];
+  async getSongs(){
+    const response:AxiosResponse = await axios.get<string,AxiosResponse<SongBean>,null>(this.url);
+    this.songList = response.data;
+    console.log("david",JSON.stringify(response))
+  }
+
+  build() {
+
+    Column() {
+      Button("请求网络数据")
+        .onClick(() => {
+          this.getSongs()
+        })
+
+      List() {
+        ForEach(this.songList, (item: SongBean, index: number) => {
+          ListItem() {
+            Row() {
+              Image(item.img).width(30)
+                .aspectRatio(1)
+              Text(item.name)
+            }
+          }.padding(10)
+        })
+      }.divider({strokeWidth:1,startMargin:30,endMargin:5,color:Color.Gray})
+    }.padding(10)
+  }
+}
+```
+
+代码中getSongs函数异步请求一个接口，当数据返回时，网络库对数据完成解析，并对被状态变量修饰的数组songList赋值，状态改变，从而List进行渲染：
+
+![](https://i-blog.csdnimg.cn/direct/0a0574b33e1944738a94b03caef04c58.png)

@@ -217,4 +217,7 @@ struct AxiosDemoPage{
 
 代码中getSongs函数异步请求一个接口，当数据返回时，网络库对数据完成解析，并对被状态变量修饰的数组songList赋值，状态改变，从而List进行渲染：
 
-![](https://i-blog.csdnimg.cn/direct/0a0574b33e1944738a94b03caef04c58.png)
+![](https://camo.githubusercontent.com/91c2c4c0143fab6ba1ae7dd2638e641a1c44c439209b497b34fde8937030ada0/68747470733a2f2f692d626c6f672e6373646e696d672e636e2f6469726563742f30613035373462333365313934343733386139346230336361656630346335382e706e67)
+
+
+
